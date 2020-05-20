@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNINOVE COVID-19 DASHBOARD</title>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="style.css">
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+     <script src="https://kit.fontawesome.com/10d2f26f53.js" crossorigin="anonymous"></script>
+
+     
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="container col-10">
+                
+                <div class="row justify-content-center">
+
+                        <div class="col-sm-2 country-title-div">
+                            <h3 id="country"></h3>
+                        </div>
+                        
+                        <div class="col dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Escolha um País
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#" onclick="localStorage['pais'] = 'Brasil'; location.reload()">Brasil</a>
+                              <a class="dropdown-item" href="#" onclick="localStorage['pais'] = 'USA'; location.reload()">Estados Unidos</a>
+                              <a class="dropdown-item" href="#" onclick="localStorage['pais'] = 'Russia'; location.reload()">Russia</a>
+                              <a class="dropdown-item" href="#" onclick="localStorage['pais'] = 'Italy'; location.reload()">Italia</a>
+                              <a class="dropdown-item" href="#" onclick="localStorage['pais'] = 'Nepal'; location.reload()">Nepal</a>
+                            </div>
+                        </div>
+
+                        <div class="col-2 country-flag-div">
+                            <img src="" id="flag" width="40px">
+                        </div>
+                        
+
+                </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row ">
+                <p class="card-text update-text">
+                <small class="text-muted">Last updated 10 mins ago</small></p>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row justify-content-center board">
+
+                <div class="col-md-4 col-lg-3 col-xl card actual">
+                    <h5><i class="fas fa-virus"></i><br> Casos atuais:</h5>
+                    <p id="active"></p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl card cases ">
+                    <h5><i class="fas fa-people-arrows"></i> <br>Total de Casos Registrados:</h5>
+                    <p id="cases"></p>
+                </div>
+                
+
+                <div class="col-md-4 col-lg-3 col-xl card critical">
+                    <h5><i class="fas fa-lungs-virus"></i><br> Casos críticos:</h5>
+                    <p id="critical"></p>
+                </div>
+                
+
+                <div class="col-md-4 col-lg-3 col-xl card deaths">
+                    <h5><i class="fas fa-cross"></i><br> Mortes:</h5>
+                    <p id="death"></p>
+                </div>
+                
+
+                <div class="col-md-4 col-lg-3 col-xl card recovered">
+                    <h5><i class="fas fa-hand-holding-medical"></i> Recuperados:</h5>
+                    <p id="recovered"></p>
+                </div>
+                
+
+                <div class="col-md-4 col-lg-3 col-xl card tests">
+                    <h5><i class="fas fa-syringe"></i><br> Testes Realizados:</h5>
+                    <p id="tests"></p>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        //Retorna do cache a veriável
+        var paisSelecionado = localStorage['pais'] || 'Brasil';
+
+        fetch('https://corona.lmao.ninja/v2/countries/' + paisSelecionado)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            document.getElementById("country").innerHTML = data.country;
+            document.getElementById("active").innerHTML = data.active.toLocaleString();
+            document.getElementById("cases").innerHTML = data.cases.toLocaleString();
+            document.getElementById("critical").innerHTML = data.critical.toLocaleString();
+            document.getElementById("death").innerHTML = data.deaths.toLocaleString();
+            document.getElementById("recovered").innerHTML = data.recovered.toLocaleString();
+            document.getElementById("tests").innerHTML = data.tests.toLocaleString();
+            document.getElementById("flag").src = data.countryInfo.flag;
+        });
+        </script>
+
+
+<!-- Optional JavaScript -->
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>
