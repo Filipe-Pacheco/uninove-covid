@@ -77,6 +77,7 @@ h1.site-title {
     font-weight: 700;
     font-style:  italic;
     color: #0a4b92;
+    text-align: center;
 }
 .site-title>span {
     font-family: inherit;
@@ -87,6 +88,10 @@ h1.site-title {
 }
 .site-title-div {
     margin: 10px;
+}
+
+.site-description {
+    text-align: center;
 }
 
 @media screen and (min-width: 100px){
