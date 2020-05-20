@@ -69,6 +69,25 @@ img#flag {
 h3#country {
     margin: 0px 0px;
 }
+.site-title  {
+    font-size: 3rem;
+}
+h1.site-title {
+    font-family: inherit;
+    font-weight: 700;
+    font-style:  italic;
+    color: #0a4b92;
+}
+.site-title>span {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 3 rem;
+    font-style:  italic;
+    color: #d30d00;
+}
+.site-title-div {
+    margin: 10px;
+}
 
 @media screen and (min-width: 100px){
     .container {
